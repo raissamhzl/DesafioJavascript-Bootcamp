@@ -33,70 +33,57 @@ const users = [
     */
 
 //Função que valida se o email existe e compara com o email digitado pelo usuário
-function validarEmail() {
+function validateEmail() {
     //LETRA A
     let inputEmail = document.getElementById('email').value;
 
     const emailUsers = users.find(el => el.email === inputEmail);
-    let validarForm = false;
-    
+    let completeForm = false;   
     //LETRA B
-    if (emailUsers === undefined) {
-      validarForm = false
-    } else {
-      validarForm = true
-    } 
-    return validarForm
+    emailUsers === undefined ? completeForm = false : completeForm = true
+
+    return completeForm
 }     
 
 //Função que soma as idades e compara com a senha digitada pelo usuário
-function validarSenha() {
-
+function validatePasswd() {
     //LETRA A
-    let inputSenha = document.getElementById('passwd').value;
+    let inputPasswd = document.getElementById('passwd').value;   
     
-    const senhaUsers = users.map(user => user.age);
-    const soma = senhaUsers.reduce((previous, current) => previous + current, 0);
-    let validarForm = false;
-   
+    const passwdUsers = users.map(user => user.age);
+    const soma = passwdUsers.reduce((previous, current) => previous + current, 0);
+    let completeForm = false;  
     //LETRA B
-    if (inputSenha != soma) {
-      validarForm = false
-    } else {
-     validarForm = true
-    }
-    return validarForm
+    inputPasswd != soma ? completeForm = false : completeForm = true
+
+    return completeForm
 }    
 
 //Função principal que alerta o usuário sobre o preenchimento do formulário
 function validateForm() {
-    let email = validarEmail()
-    let senha = validarSenha()
-    let vazio = campoVazio()
+    let email = validateEmail()
+    let password = validatePasswd()
+    let empty = emptyField()
    
     // LETRA D
-    if (vazio){
+    if (empty){
         alert('Algum campo está vazio!')
      //LETRA C
-    } else if (email && senha) {
+    } else if (email && password) {
         alert('O formulário foi preenchido com sucesso!');
     } else {
         alert('Um dos dados informados estão incorretos ou não se encontram em nossa base de dados.')
-      }
-     
+      }     
 }
 
 //Função que alerta se o usuário deixou de preencher algum dos campos 
-function campoVazio() {
+function emptyField() {
 //LETRA D
    let  x = document.getElementById('passwd').value;
    let  y = document.getElementById('email').value;
-   let validarForm = true;
+   let completeForm = true;
 
-    if ((x == null || x=="") || (y == null || y=="")){
-      validarForm = true
-    } else {
-      validarForm = false
-     }
-    return validarForm
+   ((x == null || x=="") || (y == null || y=="")) ? completeForm = true : completeForm = false
+
+    return completeForm
 }
