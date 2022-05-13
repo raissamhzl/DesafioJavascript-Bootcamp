@@ -6,11 +6,12 @@ Olá!
 
 O campo email ser preenchido com um  email existente no array de objetos do modelo passado, e a senha com a soma das idades dos usuários da lista.
 
-Utilizar uma função previamente criada para validar se o login existe e comparar com o login digitado.
+• Utilizar uma função previamente criada para validar se o login existe e comparar com o login digitado.
 
-Utilizar uma função previamente criada para somar as idades e comparar com a senha digitada.
+• Utilizar uma função previamente criada para somar as idades e comparar com a senha digitada.
 
-Caso o login e senha estejam corretos, você deve alertar o usuário que o formulário foi submetido.
+• Caso o login e senha estejam corretos, alertar o usuário que o formulário foi submetido.
+
 
 ---
 

@@ -25,65 +25,70 @@ const users = [
         age: 20
     }
 ];
-    /* LEGENDA DO DESAFIO
-        LETRA A. Referenciar elementos dos campos do formulário pelo ID
-        LETRA B. Verificar se a senha e o e-mail estão válidos 
-        LETRA C. Se tudo estiver ok, alertar o usuário que o formulário foi submetido
-        LETRA D:  Plus - Alertar o usuário quando o e-mail ou senha estiverem vazios.
-    */
 
-//Função que valida se o email existe e compara com o email digitado pelo usuário
+/*Por não ser um projeto real e sim um código de caráter avaliativo, 
+preferi manter clara e detalhada qual foi a linha de raciocínio criada. 
+Versão reduzida no fim da página em formato de comentário*/
+
+//Função que valida e-mail digitado pelo usuário, retornando um boolean
 function validateEmail() {
-    //LETRA A
     let inputEmail = document.getElementById('email').value;
-
     const emailUsers = users.find(el => el.email === inputEmail);
     let completeForm = false;   
-    //LETRA B
-    emailUsers === undefined ? completeForm = false : completeForm = true
 
+    emailUsers === undefined ? completeForm = false : completeForm = true
     return completeForm
 }     
 
-//Função que soma as idades e compara com a senha digitada pelo usuário
+//Função que valida a senha digitada pelo usuário, retornando um boolean
 function validatePasswd() {
-    //LETRA A
-    let inputPasswd = document.getElementById('passwd').value;   
-    
+    let inputPasswd = document.getElementById('passwd').value;    
     const passwdUsers = users.map(user => user.age);
     const soma = passwdUsers.reduce((previous, current) => previous + current, 0);
     let completeForm = false;  
-    //LETRA B
+    
     inputPasswd != soma ? completeForm = false : completeForm = true
-
     return completeForm
-}    
+}  
 
-//Função principal que alerta o usuário sobre o preenchimento do formulário
+//Função que analisa se algum campo está sem conteúdo, retornando um boolean
+function emptyField() {
+       let  x = document.getElementById('passwd').value;
+       let  y = document.getElementById('email').value;
+       let completeForm = true;
+    
+       ((x == null || x=="") || (y == null || y=="")) ? completeForm = true : completeForm = false
+        return completeForm
+    }
+
+//Função que valida formulário, trazendo as 3 funções acima como variáveis
 function validateForm() {
     let email = validateEmail()
     let password = validatePasswd()
     let empty = emptyField()
    
-    // LETRA D
     if (empty){
-        alert('Algum campo está vazio!')
-     //LETRA C
+        alert('Eita! Algum campo está vazio :/')
     } else if (email && password) {
-        alert('O formulário foi preenchido com sucesso!');
+        alert('Eba! Fica de olho nas informações para não perder o próximo <re>Programa :D');
     } else {
-        alert('Um dos dados informados estão incorretos ou não se encontram em nossa base de dados.')
+        alert('Xiii... Seu e-mail ou senha estão incorretos :(')
       }     
 }
 
-//Função que alerta se o usuário deixou de preencher algum dos campos 
-function emptyField() {
-//LETRA D
-   let  x = document.getElementById('passwd').value;
-   let  y = document.getElementById('email').value;
-   let completeForm = true;
+/* 
+-------------------------
+VERSÃO REDUZIDA DO DESAFIO
 
-   ((x == null || x=="") || (y == null || y=="")) ? completeForm = true : completeForm = false
-
-    return completeForm
-}
+function validateForm() {
+    let inputEmail = document.getElementById('email').value;
+    let inputPasswd = document.getElementById('passwd').value;  
+    const emailUsers = users.find(el => el.email === inputEmail);   
+    const passwdUsers = users.map(user => user.age);
+    const soma = passwdUsers.reduce((previous, current) => previous + current, 0);
+   
+    (!inputEmail || !inputPasswd) ? alert('Eita! Algum campo está vazio :/') :
+    (!emailUsers || (inputPasswd !=soma)) ? alert('Xiii... Seu e-mail ou senha estão incorretos :(') :
+    alert('Eba! Fica de olho nas informações para não perder o próximo <re>Programa :D')
+    }
+*/
